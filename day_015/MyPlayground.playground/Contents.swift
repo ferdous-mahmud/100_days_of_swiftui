@@ -167,3 +167,94 @@ struct Game {
 var cricket = Game(score: 300)
 cricket.score = 250
 
+
+// Access modifier
+struct BankAccount {
+    private (set) var fund = 0
+    
+    mutating func deposit(ammount: Int) {
+        fund += ammount
+    }
+    
+    mutating func withdraw(ammount: Int) -> Bool {
+        if fund >= ammount {
+            fund -= ammount
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
+var mybankAccount = BankAccount()
+mybankAccount.deposit(ammount: 10_000_000)
+mybankAccount.withdraw(ammount: 5_000)
+print(mybankAccount.fund)
+
+
+// Class
+// Parent class
+class Employee {
+    let hours: Int
+    
+    init(hours: Int){
+        self.hours = hours
+    }
+    
+    func printSummary(){
+        print("I work \(hours) hours a day.")
+    }
+}
+
+// Child class inharite from parent
+class Developer: Employee {
+    func work() {
+        print("I am coding for \(hours) hours a day.")
+    }
+    
+    override func printSummary() {
+        print("I work as a developer\(hours) hours a day.")
+    }
+}
+
+let nodi = Developer(hours: 8)
+nodi.work()
+
+
+// Protocol
+protocol Vechicle {
+    func estimateTime( for distance: Int) -> Int
+    func travel(distance: Int)
+}
+
+struct Car: Vechicle {
+    func estimateTime(for distance: Int) -> Int {
+        distance / 20
+    }
+    
+    func travel(distance: Int) {
+        print("I am traveling \(distance)km distance by car")
+    }
+}
+
+func commute(distance: Int, using vehicle: Vechicle) {
+    if vehicle.estimateTime(for: distance) > 100 {
+        print("It's too slow")
+    } else {
+        vehicle.travel(distance: distance)
+    }
+}
+let car = Car()
+commute(distance: 250, using: car)
+
+
+// Extension
+// Add new functionality on existing type
+extension String {
+    func trimed() -> String {
+        self.trimmingCharacters(in: .whitespaces)
+    }
+}
+
+var quote = "   this is a quote wiht whitespace "
+quote =  quote.trimed()
