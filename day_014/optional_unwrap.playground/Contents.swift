@@ -37,3 +37,11 @@ let captains = [
 let newziland = captains["NewZiland"] ?? "N/A"
 print(newziland)
 
+
+// Optional chaining
+// Handle multiple optional vaue using optional chainging
+let names = ["Akash", "Nodi", "Ferdous", "Sanjida"]
+let chosenName = names.randomElement()?.uppercased() ?? "No One"
+
+print(chosenName)
+
