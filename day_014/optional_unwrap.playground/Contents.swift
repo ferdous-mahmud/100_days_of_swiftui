@@ -24,3 +24,16 @@ printSquare(number: number)
 
 number = 5
 printSquare(number: number)
+
+
+// unwrap using Nil coalasing operator
+// "??" This is nill coasasing operator
+let captains = [
+    "Bangladesh" : "Mahmudullah",
+    "India": "Virat Quhali",
+    "SriLanka": "Mehela Jayabrdhan"
+]
+
+let newziland = captains["NewZiland"] ?? "N/A"
+print(newziland)
+
