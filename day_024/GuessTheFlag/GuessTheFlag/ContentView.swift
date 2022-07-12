@@ -7,6 +7,31 @@
 
 import SwiftUI
 
+struct FlagImage: View {
+    let imageName: String
+    
+    @ViewBuilder var body: some View {
+        Image(imageName)
+            .renderingMode(.original)
+            .clipShape(Capsule())
+            .shadow(radius: 5)
+    }
+}
+
+struct LeargeBlueText: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.largeTitle)
+            .foregroundStyle(.blue)
+    }
+}
+
+extension View {
+    func leargeBlueText() -> some View {
+        modifier(LeargeBlueText())
+    }
+}
+
 struct ContentView: View {
     @State private var isShowingScore = false
     @State private var isEndGame = false
@@ -39,17 +64,15 @@ struct ContentView: View {
                             .font(.subheadline.weight(.heavy))
                             .foregroundStyle(.secondary)
                         Text("\(countries[correctAnswer])")
-                            .font(.largeTitle.weight(.semibold))
+                            .leargeBlueText()
                     }
                     
                     ForEach(0..<3) { number in
                         Button {
                             flagTapped(number)
                         } label: {
-                            Image(countries[number])
-                                .renderingMode(.original)
-                                .clipShape(Capsule())
-                                .shadow(radius: 5)
+                            //FlagImage
+                            FlagImage(imageName: countries[number])
                         }
                     }
                 }
