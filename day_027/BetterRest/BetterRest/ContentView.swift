@@ -11,38 +11,60 @@ import SwiftUI
 struct ContentView: View {
     @State private var sleepAmount = 8.0
     @State private var coffeeAmount = 1
-    @State private var wakeUp = Date.now
+    @State private var wakeUp = defaultWeakUptime
     
     @State private var alertTitle = ""
     @State private var alertMessage = ""
     @State private var isShowingAlert = false
     
+    static var defaultWeakUptime: Date {
+        var components = DateComponents()
+        components.hour = 7
+        components.minute = 0
+        return Calendar.current.date(from: components) ?? Date.now
+    }
+    
     var body: some View {
         NavigationView {
             VStack{
-                Group {
-                    Text("When do you want to weakup?")
-                        .font(.headline)
+                Form {
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("When do you want to weakup?")
+                            .font(.headline)
+                        
+                        DatePicker("Please enter a time", selection: $wakeUp, displayedComponents: .hourAndMinute)
+                            .labelsHidden()
+                    }
                     
-                    DatePicker("Please enter a time", selection: $wakeUp, displayedComponents: .hourAndMinute)
-                        .labelsHidden()
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Desired amount of sleep")
+                            .font(.headline)
+                        
+                        Stepper("\(sleepAmount.formatted()) hours", value: $sleepAmount, in: 6...12, step: 0.25)
+                    }
                     
-                    Text("Desired amount of sleep")
-                        .font(.headline)
-                    
-                    Stepper("\(sleepAmount.formatted()) hours", value: $sleepAmount, in: 6...12, step: 0.25)
-                    
-                    Text("Daily coffee intake")
-                        .font(.headline)
-                    
-                    Stepper(coffeeAmount == 1 ? "1 cup" : "\(coffeeAmount) cups" , value: $coffeeAmount, in: 1...10)
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Daily coffee intake")
+                            .font(.headline)
+                        
+                        Stepper(coffeeAmount == 1 ? "1 cup" : "\(coffeeAmount) cups" , value: $coffeeAmount, in: 1...10)
+                    }
                 }
-                .padding(.horizontal)
                 Spacer()
             }
-            .navigationTitle("BetterRest")
+            .navigationBarItems(
+                leading: Text("BetterRest")
+                    .fontWeight(.bold)
+                    .font(.title)
+                    .padding(.horizontal)
+            )
             .toolbar {
                 Button("Calculate", action: calculateBedTime)
+                    .padding(.horizontal)
+                    .background(.green)
+                    .foregroundColor(.secondary)
+                    .font(.body.weight(.semibold))
+                    .cornerRadius(10)
             }
             .alert(alertTitle, isPresented: $isShowingAlert) {
                 Button("Done"){}

@@ -1,7 +1,7 @@
 {
   "Outputs" : {
     "actualSleep" : {
-      "MLFeatureShortDescription" : "Pradicted amount of sleep."
+      "MLFeatureShortDescription" : "When go to sleep to weakup proper time"
     }
   },
   "Inputs" : {
