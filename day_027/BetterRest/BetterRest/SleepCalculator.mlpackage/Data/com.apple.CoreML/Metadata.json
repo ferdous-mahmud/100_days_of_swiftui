@@ -1,0 +1,12 @@
+{
+  "MLModelVersionStringKey" : "0.0.01",
+  "MLModelDescriptionKey" : "--",
+  "MLModelCreatorDefinedKey" : {
+    "com.apple.createml.app.tag" : "78.5",
+    "com.apple.createml.version" : "11.6.0",
+    "com.apple.createml.app.version" : "3.0",
+    "com.apple.coreml.model.preview.type" : "tabularRegressor"
+  },
+  "MLModelAuthorKey" : "Ferdous Mahmud Akash",
+  "MLModelLicenseKey" : "MIT"
+}

@@ -1,0 +1,21 @@
+{
+  "Outputs" : {
+    "actualSleep" : {
+      "MLFeatureShortDescription" : "Pradicted amount of sleep."
+    }
+  },
+  "Inputs" : {
+    "coffee" : {
+      "MLFeatureShortDescription" : "Cup of coffee amount to drink."
+    },
+    "wake" : {
+      "MLFeatureShortDescription" : "What time want to wake up."
+    },
+    "estimatedSleep" : {
+      "MLFeatureShortDescription" : "How much sleep user wants to have."
+    }
+  },
+  "TrainingInputs" : {
+
+  }
+}
